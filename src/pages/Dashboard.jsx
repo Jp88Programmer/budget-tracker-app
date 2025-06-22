@@ -18,8 +18,14 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const res = await API.get("/dashboard/summary");
-        setSummary(res.data);
+        const res = await API.get("/summary");
+        const { data } = res.data;
+        const summary = {
+          totalExpenses: data[0].total,
+          totalIncome: data[0].total,
+          balance: data[0].total - data[0].total,
+        };
+        setSummary(summary);
       } catch (err) {
         console.error("Failed to fetch summary", err);
       }

@@ -25,9 +25,10 @@ const Budget = () => {
   const [expenses, setExpenses] = useState(0);
 
   const fetchBudgetData = async () => {
-    const res = await API.get("/dashboard/summary");
-    setBudget(res.data.monthlyBudget);
-    setExpenses(res.data.expense);
+    const res = await API.get("/summary");
+    const { data } = res.data;
+    setBudget(data[0].total);
+    setExpenses(data[0].type);
   };
 
   useEffect(() => {

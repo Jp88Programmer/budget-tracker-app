@@ -8,8 +8,9 @@ const Transactions = () => {
     amount: "",
     type: "income",
     category: "",
-    description: "",
+    title: "",
   });
+
   const [filters, setFilters] = useState({
     date: "",
     category: "",
@@ -26,7 +27,7 @@ const Transactions = () => {
 
   const fetchCategories = async () => {
     const res = await API.get("/categories");
-    setCategories(res.data);
+    setCategories(res.data.categories);
   };
 
   useEffect(() => {
@@ -36,7 +37,14 @@ const Transactions = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await API.post("/transactions", form);
+    const body = {
+      amount: form.amount,
+      type: form.type,
+      categoryId: form.category,
+      title: form.title,
+      date: new Date().toISOString().split("T")[0],
+    };
+    await API.post("/transactions", body);
     setForm({ amount: "", type: "income", category: "", description: "" });
     fetchTransactions();
   };
@@ -80,7 +88,7 @@ const Transactions = () => {
           >
             <option value="">Select Category</option>
             {categories.map((cat) => (
-              <option key={cat.id} value={cat.name}>
+              <option key={cat.id} value={cat.id}>
                 {cat.name}
               </option>
             ))}
@@ -89,8 +97,8 @@ const Transactions = () => {
             type="text"
             placeholder="Description"
             className="border p-2 rounded"
-            value={form.description}
-            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
           />
         </div>
         <button
@@ -141,25 +149,35 @@ const Transactions = () => {
             </tr>
           </thead>
           <tbody>
-            {transactions.map((tx) => (
-              <tr key={tx.id} className="border-b">
-                <td className="py-2">
-                  {new Date(tx.date).toLocaleDateString()}
-                </td>
-                <td>{tx.type}</td>
-                <td>{tx.amount}</td>
-                <td>{tx.category}</td>
-                <td>{tx.description}</td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(tx.id)}
-                    className="text-red-600 hover:underline"
-                  >
-                    Delete
-                  </button>
+            {transactions?.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center py-4">
+                  No transactions found.
                 </td>
               </tr>
-            ))}
+            ) : (
+              <>
+                {transactions?.map((tx) => (
+                  <tr key={tx.id} className="border-b">
+                    <td className="py-2">
+                      {new Date(tx.date).toLocaleDateString()}
+                    </td>
+                    <td>{tx.type}</td>
+                    <td>{tx.amount}</td>
+                    <td>{tx.category}</td>
+                    <td>{tx.title}</td>
+                    <td>
+                      <button
+                        onClick={() => handleDelete(tx.id)}
+                        className="text-red-600 hover:underline"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            )}
           </tbody>
         </table>
         <div className="flex justify-between mt-4">
