@@ -9,6 +9,7 @@ const Transactions = () => {
     type: "income",
     category: "",
     title: "",
+    description: "",
   });
 
   const [filters, setFilters] = useState({
@@ -42,10 +43,17 @@ const Transactions = () => {
       type: form.type,
       categoryId: form.category,
       title: form.title,
+      ...(form.description.length > 0 && { description: form.description }),
       date: new Date().toISOString().split("T")[0],
     };
     await API.post("/transactions", body);
-    setForm({ amount: "", type: "income", category: "", description: "" });
+    setForm({
+      amount: "",
+      type: "income",
+      category: "",
+      title: "",
+      description: "",
+    });
     fetchTransactions();
   };
 
@@ -95,10 +103,17 @@ const Transactions = () => {
           </select>
           <input
             type="text"
-            placeholder="Description"
+            placeholder="Title"
             className="border p-2 rounded"
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
+          />
+
+          <textarea
+            placeholder="Additional Notes"
+            className="border p-2 rounded col-span-1 md:col-span-2 lg:col-span-4"
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
           />
         </div>
         <button
@@ -144,6 +159,7 @@ const Transactions = () => {
               <th>Type</th>
               <th>Amount</th>
               <th>Category</th>
+              <th>Title</th>
               <th>Description</th>
               <th>Action</th>
             </tr>
@@ -157,8 +173,8 @@ const Transactions = () => {
               </tr>
             ) : (
               <>
-                {transactions?.map((tx) => (
-                  <tr key={tx.id} className="border-b">
+                {transactions?.map((tx, index) => (
+                  <tr key={`transaction-${index}`} className="border-b">
                     <td className="py-2">
                       {new Date(tx.date).toLocaleDateString()}
                     </td>
@@ -166,6 +182,7 @@ const Transactions = () => {
                     <td>{tx.amount}</td>
                     <td>{tx.category}</td>
                     <td>{tx.title}</td>
+                    <td>{tx.description}</td>
                     <td>
                       <button
                         onClick={() => handleDelete(tx.id)}
