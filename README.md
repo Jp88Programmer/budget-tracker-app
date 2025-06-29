@@ -2,6 +2,7 @@
 
 A modern React + Vite frontend for tracking your income, expenses, and budgets. Visualize your financial data with charts, manage transactions, and keep your spending under control.
 
+
 ## Features
 
 - **User Authentication**: Register and log in securely.
@@ -11,6 +12,7 @@ A modern React + Vite frontend for tracking your income, expenses, and budgets. 
 - **Budget Management**: Set and view monthly budgets.
 - **Charts**: Interactive bar charts for budget vs. expenses and financial summaries.
 - **Responsive UI**: Clean, mobile-friendly design using Tailwind CSS.
+
 
 ## Getting Started
 
