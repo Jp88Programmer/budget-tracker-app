@@ -38,6 +38,7 @@ npm run dev
 
 The app will be available at [http://localhost:5173](http://localhost:5173) by default.
 
+
 ## Usage
 
 ### Authentication
@@ -76,12 +77,14 @@ The app will be available at [http://localhost:5173](http://localhost:5173) by d
 - The app uses [Chart.js](https://www.chartjs.org/) via [react-chartjs-2](https://react-chartjs-2.js.org/) for interactive bar charts.
 - Charts are shown on the Dashboard and Budget pages.
 
+
 ## Project Structure
 
 - `src/pages/` — Main pages (Dashboard, Transactions, Budget, Login, Register)
 - `src/context/` — React context for authentication
 - `src/utils/api.js` — Axios instance for API calls
 - `src/assets/` — Static assets
+
 
 ## Tech Stack
 
@@ -90,6 +93,7 @@ The app will be available at [http://localhost:5173](http://localhost:5173) by d
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Chart.js](https://www.chartjs.org/) & [react-chartjs-2](https://react-chartjs-2.js.org/)
 - [Axios](https://axios-http.com/)
+
 
 ## Backend
 
