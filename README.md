@@ -101,4 +101,5 @@ This app requires the [budget-tracker-backend](https://github.com/Jp88Programmer
 
 ---
 
+
 **Happy budgeting!**
