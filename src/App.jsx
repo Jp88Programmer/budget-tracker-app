@@ -16,12 +16,13 @@ import RegisterPage from "./pages/RegisterPage";
 
 function PrivateRoute({ children }) {
   const { token } = useAuth();
+  
   return token ? children : <Navigate to="/login" />;
 }
 
 function Layout({ children }) {
   const { logout } = useAuth();
-  
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
