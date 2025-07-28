@@ -21,6 +21,7 @@ function PrivateRoute({ children }) {
 
 function Layout({ children }) {
   const { logout } = useAuth();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
