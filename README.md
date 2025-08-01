@@ -16,6 +16,7 @@ A modern React + Vite frontend for tracking your income, expenses, and budgets. 
 
 ## Getting Started
 
+
 ### 1. Install Dependencies
 
 ```sh
