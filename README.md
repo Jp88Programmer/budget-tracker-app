@@ -1,4 +1,4 @@
-# Budget Tracker App
+# Budget Tracker Application 
 
 A modern React + Vite frontend for tracking your income, expenses, and budgets. Visualize your financial data with charts, manage transactions, and keep your spending under control.
 
