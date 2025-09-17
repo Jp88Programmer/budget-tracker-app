@@ -4,6 +4,7 @@ A modern React + Vite frontend for tracking your income, expenses, and budgets. 
 
 
 
+
 ## Features
 
 - **User Authentication**: Register and log in securely.
